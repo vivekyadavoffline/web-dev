@@ -10,9 +10,7 @@
 
 <header>
     <h1>Ambay Hardware & Plywood</h1> <div style="text-align:center; margin-top:20px;">
-    <img src="https://lh3.googleusercontent.com/a-/ALV-UjWNGUKDCZS97s0VOiLXtuT0UHU1VmaW6q6U9FyDiZH0u4oRYULk=s265-w265-h265" 
-         alt="Ambay Hardware & Plywood Logo"
-         style="width:120px; height:120px; border-radius:50%; object-fit:cover;">
+   
 </div>
     <nav>
         <a href="index.html">Home</a>
@@ -22,7 +20,9 @@
     </nav>
 </header>
 <!-- SHOP LOGO -->
-
+ <img src="https://lh3.googleusercontent.com/a-/ALV-UjWNGUKDCZS97s0VOiLXtuT0UHU1VmaW6q6U9FyDiZH0u4oRYULk=s265-w265-h265" 
+         alt="Ambay Hardware & Plywood Logo"
+         style="width:120px; height:120px; border-radius:50%; object-fit:cover;">
 <!-- OWNER DETAILS -->
 <section class="content">
     <h2>Owner Details</h2>
@@ -114,10 +114,24 @@
 </footer>
 
 <!-- Chatbot -->
-<script src="AHP.js"></script>
+<script src="AHP.js"></script><script>
+document.getElementById("suggestion-btn").addEventListener("click", function() {
+    let suggestion = document.getElementById("suggestion-input").value.trim();
+
+    if (suggestion.length < 3) {
+        alert("Please enter a detailed suggestion.");
+        return;
+    }
+
+    document.getElementById("suggestion-msg").style.display = "block";
+    document.getElementById("suggestion-input").value = "";
+});
+</script>
+
 
 </body>
 </html>
+
 
 
 

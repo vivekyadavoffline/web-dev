@@ -205,6 +205,17 @@ nav a:hover {
 .brand-card:hover .popup {
     display: block;
 }
+.uniform-img {
+    width: 100%;
+    height: 220px;          /* Fixes image height */
+    object-fit: cover;      /* Crops perfectly without stretching */
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+.uniform-img:hover {
+    transform: scale(1.03);
+}
 
 /* Enquiry button */
 .btn-enquiry {
@@ -300,4 +311,5 @@ footer {
         to { transform: translateY(0); }
     }
 }
+
 

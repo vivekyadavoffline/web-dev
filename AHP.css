@@ -1,0 +1,256 @@
+/* =========================================
+   GLOBAL STYLES
+========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(180deg, #f4f7fb, #e9eef3);
+    color: #222;
+}
+
+/* Smooth Fade Animation */
+.fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   HEADER
+========================================= */
+header {
+    background: linear-gradient(135deg, #1d1d1d, #333);
+    color: white;
+    text-align: center;
+    padding: 25px 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+header h1 {
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: #77ccff;
+    text-decoration: none;
+    margin: 0 12px;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: rgba(255,255,255,0.18);
+}
+
+/* =========================================
+   HERO SECTION
+========================================= */
+.hero {
+    background: white;
+    padding: 50px 20px;
+    margin: 20px;
+    text-align: center;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    animation: fadeInUp 0.8s ease;
+}
+
+.hero h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    background: linear-gradient(135deg, #0077cc, #005fa0);
+    color: white !important;
+    padding: 12px 25px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #005fa0, #0077cc);
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   CONTENT SECTIONS
+========================================= */
+.content {
+    background: white;
+    margin: 20px;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    animation: fadeInUp 0.8s ease;
+}
+
+.content h2 {
+    font-size: 26px;
+    margin-bottom: 12px;
+    color: #003366;
+    border-left: 5px solid #0077cc;
+    padding-left: 10px;
+}
+
+.content p {
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   ABOUT PAGE (Improved Lists)
+========================================= */
+.about-list li {
+    background: #f2f7ff;
+    padding: 10px 15px;
+    border-left: 4px solid #0077cc;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.about-list li:hover {
+    background: #e3efff;
+    transform: translateX(5px);
+}
+
+/* =========================================
+   BRAND GRID
+========================================= */
+.brand-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* FIXED 3 COLUMNS */
+    gap: 25px;
+    padding: 20px;
+}
+
+
+.brand-card {
+    background: #fff;
+    padding: 18px;
+    border-radius: 14px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.brand-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+}
+
+.brand-card:hover {
+    transform: scale(1.06);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* BRAND POPUP */
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 85%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.92);
+    padding: 15px;
+    border-radius: 10px;
+    display: none;
+    color: white;
+    animation: popupFade 0.4s ease;
+}
+
+@keyframes popupFade {
+    from { opacity: 0; transform: translate(-50%, -45%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.brand-card:hover .popup {
+    display: block;
+}
+
+.btn-enquiry {
+    background: linear-gradient(135deg, #25d366, #1eb454);
+    color: white !important;
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn-enquiry:hover {
+    transform: translateY(-3px);
+}
+
+/* =========================================
+   GALLERY IMAGES
+========================================= */
+.gallery-img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.gallery-img:hover {
+    transform: scale(1.04);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+}
+
+/* =========================================
+   MOBILE FRIENDLY
+========================================= */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 22px;
+    }
+    .btn {
+        padding: 10px 18px;
+    }
+    .brand-card img {
+        height: 90px;
+    }
+}

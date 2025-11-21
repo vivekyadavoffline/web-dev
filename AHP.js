@@ -1,10 +1,8 @@
 /* =========================================
-   AHP.js - Mini Chat Box (Small Chat Widget)
+   AHP.js - Final Working Mini Chat Widget
 ========================================= */
 
-/* ----------------------
-   Inject CSS for widget
----------------------- */
+/* Inject CSS */
 (function injectAHPStyles(){
     const css = `
 #ahp-chat-btn {
@@ -22,7 +20,8 @@
     cursor: pointer;
     background: white;
     border: 2px solid rgba(0,0,0,0.06);
-    transition: transform .18s ease, box-shadow .18s ease;
+    transition: transform .18s ease;
+    user-select:none;
 }
 #ahp-chat-btn:hover { transform: translateY(-4px); }
 
@@ -57,7 +56,6 @@
     padding: 12px 14px;
     display: flex;
     align-items: center;
-    gap: 10px;
 }
 #ahp-chat-panel .ahp-header .title { font-weight: 700; font-size: 15px; }
 #ahp-chat-panel .ahp-header .subtitle { font-size: 12px; opacity: 0.9; }
@@ -67,13 +65,17 @@
     padding: 12px;
     flex: 1 1 auto;
     overflow-y: auto;
-    background: linear-gradient(180deg,#f7fbff,#ffffff);
+    background: #f7fbff;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.ahp-msg { font-size: 14px; max-width: 82%; }
+.ahp-msg {
+    font-size: 14px;
+    max-width: 82%;
+    line-height:1.4;
+}
 .ahp-msg.you {
     align-self: flex-end;
     background:#0077cc;
@@ -95,6 +97,7 @@
     border-top: 1px solid #eee;
     display:flex;
     gap:8px;
+    align-items:center;
 }
 #ahp-chat-input {
     flex: 1;
@@ -112,6 +115,7 @@
     cursor: pointer;
 }
 
+/* suggestions */
 .ahp-suggestions {
     display:flex;
     flex-wrap:wrap;
@@ -125,12 +129,7 @@
     font-size:13px;
     border-radius:8px;
     cursor:pointer;
-    border:1px solid rgba(0,0,0,0.03);
-}
-
-/* small screens */
-@media (max-width:420px) {
-    #ahp-chat-panel { width: 94%; right: 3%; bottom: 82px; height: 70vh; }
+    user-select:none;
 }
 `;
     const s = document.createElement('style');
@@ -138,9 +137,7 @@
     document.head.appendChild(s);
 })();
 
-/* ----------------------
-   Create Chat Widget UI
----------------------- */
+/* Create Chat Widget */
 (function createAHPWidget(){
 
     /* Chat Button */
@@ -148,8 +145,7 @@
     chatBtn.id = 'ahp-chat-btn';
 
     const icon = document.createElement('img');
-icon.src = 'ahpbot.png';
-  // your image
+    icon.src = "ahpchatbot.png";   /* Your confirmed logo */
     chatBtn.appendChild(icon);
 
     document.body.appendChild(chatBtn);
@@ -160,14 +156,14 @@ icon.src = 'ahpbot.png';
     panel.innerHTML = `
         <div class="ahp-header">
             <div>
-                <div class="title">Ambay Chat</div>
-                <div class="subtitle">Ask about timings, brands, plywood…</div>
+                <div class="title">AHP Bot</div>
+                <div class="subtitle">Ask about timings, brands & more…</div>
             </div>
             <div id="ahp-close" style="margin-left:auto;cursor:pointer;">✕</div>
         </div>
 
         <div id="ahp-chat-messages">
-            <div class="ahp-msg bot">Hi! I'm Ambay bot. Ask me anything.</div>
+            <div class="ahp-msg bot">Hi! I'm AHP bot. How can I help?</div>
         </div>
 
         <div class="ahp-suggestions" id="ahp-suggestions">
@@ -186,116 +182,87 @@ icon.src = 'ahpbot.png';
     `;
     document.body.appendChild(panel);
 
-    /* Button Toggle */
+    /* Open/Close */
     chatBtn.addEventListener('click', () => {
-        panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
+        panel.style.display = panel.style.display === "flex" ? "none" : "flex";
     });
-    document.getElementById('ahp-close').addEventListener('click', () => panel.style.display = 'none');
+    document.getElementById("ahp-close").onclick = () => { panel.style.display="none"; };
 
-    /* --------------------------
-       Message Functions
-    -------------------------- */
-    function sendUserMessage(text){
-        const box = document.createElement('div');
-        box.className = 'ahp-msg you';
-        box.textContent = text;
-        document.getElementById('ahp-chat-messages').appendChild(box);
-        scrollMessages();
-        document.getElementById('ahp-chat-input').value = '';
+    /* Helpers */
+    function addUser(text){
+        const msg=document.createElement('div');
+        msg.className='ahp-msg you';
+        msg.textContent=text;
+        messages.append(msg);
+        scroll();
+        input.value="";
     }
 
-    function sendBotMessage(text, html=false){
-        const messages = document.getElementById('ahp-chat-messages');
-        const box = document.createElement('div');
-        box.className = 'ahp-msg bot';
-
-        if(html){
-            box.innerHTML = text;
-        } else {
-            box.textContent = text;
-        }
-
-        messages.appendChild(box);
-        scrollMessages();
+    function addBot(text,html=false){
+        const msg=document.createElement('div');
+        msg.className='ahp-msg bot';
+        msg[html ? "innerHTML" : "textContent"] = text;
+        messages.append(msg);
+        scroll();
     }
 
-    function scrollMessages(){
-        const m = document.getElementById('ahp-chat-messages');
-        m.scrollTop = m.scrollHeight;
+    function scroll(){
+        messages.scrollTop = messages.scrollHeight;
     }
 
-    /* ----------------------
-       Knowledge Base (Final)
-    ---------------------- */
+    const messages = document.getElementById('ahp-chat-messages');
+    const input    = document.getElementById('ahp-chat-input');
+
+    /* Knowledge Base */
     const kb = [
-        {keys:['hi','hello','hey'], ans:'Hello! How can I help you today?'},
-        {keys:['timing','time','open','opening'], ans:'We are open 9:00 AM to 8:00 PM every day.'},
-        {keys:['address','location','where'], ans:'Ambay Hardware & Plywood — Marble Market, Alwar Bypass Road, Bhiwadi.'},
-        {keys:['contact','phone','number'], ans:'Phone / WhatsApp: 8058984540'},
-
-        {keys:['owner','akhilesh','akhilesh yadav'], ans:'Owner: Akhilesh Yadav.'},
-        {keys:['established','2 nov','2009','since'], ans:'The shop was established on 2 November 2009.'},
-        {keys:['shop age','how old'], ans:'We have been serving Bhiwadi since 2009.'},
-
+        {keys:['hi','hello'], ans:'Hello! How can I help?'},
+        {keys:['timing','open'], ans:'We are open 9 AM – 8 PM daily.'},
+        {keys:['address','location'], ans:'Marble Market, Alwar Bypass Road, Bhiwadi.'},
+        {keys:['phone','contact'], ans:'Phone / WhatsApp: 8058984540'},
+        {keys:['owner','akhilesh'], ans:'Owner: Akhilesh Yadav'},
+        {keys:['2009','established'], ans:'The shop was established on 2 Nov 2009.'},
         {keys:['email','mail'], ans:'Email: ambayhardwareandplywood@gmail.com'},
-
-        {keys:['plywood'], ans:'We offer Century, Nexus, Virgo, Action Tesa plywood.'},
-        {keys:['laminate','laminates'], ans:'Decorative & commercial laminates available.'},
-        {keys:['hardware','fittings'], ans:'Hardware: Hettich, Dorset, Rider Ultima etc.'},
-        {keys:['adhesive','fevicol','bondtite'], ans:'Fevicol & Astral Bondtite available.'},
-
-        {keys:['brands','brand list'], ans:'Brands: Hettich, Dorset, Astral, Rider, Nexus, Fevicol, Virgo, Century, Action Tesa.'},
-
-        {keys:['review','reviews','google review','rating','google rating','customer review'],
-         ans:'See our Google reviews ⭐ https://www.google.com/search?q=Ambay+Hardware+%26+Plywood+Bhiwadi'},
-
-        {keys:['delivery'], ans:'We offer local delivery in Bhiwadi.'},
-        {keys:['price','rate','cost'], ans:'Prices vary by product. Please message us on WhatsApp.'},
-        {keys:['help'], ans:'I can help with timings, brands, plywood, hardware & more.'},
-        {keys:['thanks','thank you'], ans:'You are welcome!'}
+        {keys:['plywood'], ans:'Plywood: Century, Nexus, Virgo, Action Tesa.'},
+        {keys:['laminate'], ans:'Laminates available: Virgo, Century and more.'},
+        {keys:['hardware'], ans:'Hardware brands: Hettich, Dorset, Rider Ultima.'},
+        {keys:['brands'], ans:'Hettich, Dorset, Astral, Nexus, Fevicol, Century, Tesa & more.'},
+        {keys:['review'], ans:'Google Reviews ⭐ https://www.google.com/search?q=Ambay+Hardware+%26+Plywood+Bhiwadi'},
+        {keys:['price','rate'], ans:'Prices vary by product. Please WhatsApp us.'},
+        {keys:['help'], ans:'Try asking: timings, plywood, brands, address.'}
     ];
 
-    /* ----------------------
-       Handle User Message
-    ---------------------- */
-    function handleMessage(q){
-        const text = q.toLowerCase();
+    /* Process Message */
+    function handle(text){
+        const q=text.toLowerCase();
 
-        // Check knowledge base
-        for(let item of kb){
-            if(item.keys.some(k => text.includes(k))){
-                sendBotMessage(item.ans);
+        for(const item of kb){
+            if(item.keys.some(k=>q.includes(k))){
+                addBot(item.ans);
                 return;
             }
         }
 
-        // Unknown → WhatsApp fallback
-        sendBotMessage("I couldn't understand that. Tap below to chat on WhatsApp.");
-        sendBotMessage(`<a href="https://wa.me/918058984540" 
-            target="_blank" style="background:#25d366;color:white;
-            padding:7px 12px;border-radius:8px;display:inline-block;
-            text-decoration:none;">Chat on WhatsApp</a>`, true);
+        addBot("I couldn't understand that.");
+        addBot(`<a href="https://wa.me/918058984540" target="_blank"
+            style="background:#25d366;color:white;padding:7px 12px;border-radius:8px;text-decoration:none;">
+            Chat on WhatsApp</a>`, true);
     }
 
-    /* ----------------------
-       Input / Suggestions
-    ---------------------- */
-    document.getElementById('ahp-chat-send').addEventListener('click', ()=>{
-        const txt = document.getElementById('ahp-chat-input').value.trim();
-        if(!txt) return;
-        sendUserMessage(txt);
-        handleMessage(txt);
-    });
+    /* Send Button */
+    document.getElementById('ahp-chat-send').onclick = ()=>{
+        if(!input.value.trim()) return;
+        addUser(input.value);
+        handle(input.value);
+    };
 
-    document.getElementById('ahp-suggestions').addEventListener('click', (e)=>{
-        if(e.target.classList.contains('ahp-suggestion')){
-            const q = e.target.textContent;
-            sendUserMessage(q);
-            handleMessage(q);
+    /* Suggestions */
+    document.getElementById('ahp-suggestions').onclick = (e)=>{
+        if(e.target.classList.contains("ahp-suggestion")){
+            const q=e.target.textContent;
+            addUser(q);
+            handle(q);
         }
-    });
+    };
 
 })();
-
-
 

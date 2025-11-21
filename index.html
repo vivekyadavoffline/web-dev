@@ -23,6 +23,38 @@
          alt="Ambay Hardware & Plywood Logo"
          style="width:120px; height:120px; border-radius:50%; object-fit:cover;">
 </div>
+<!-- OWNER DETAILS -->
+<section class="content fade-in">
+    <h2>Owner Details</h2>
+
+    <p><strong>Owner Name:</strong> Akhilesh Yadav</p>
+    <p><strong>Shop Established On:</strong> 2 November 2009</p>
+    <p><strong>Shop Age:</strong> <span id="shop-age"></span></p>
+</section>
+
+<!-- OWNER MESSAGE -->
+<section class="content fade-in">
+    <h2>Owner’s Message</h2>
+
+    <p>
+        “We don’t just sell brands — we help brands become brands through our
+        hard work, commitment and dedication. Every customer is important,
+        and every product we deliver represents our trust and honesty.”
+    </p>
+
+    <p style="margin-top:10px;">
+        <strong>- Akhilesh Yadav</strong><br>
+        Owner, Ambay Hardware & Plywood
+    </p>
+</section>
+
+<!-- AUTO-CALCULATE SHOP AGE SCRIPT -->
+<script>
+    const startYear = 2009;
+    const currentYear = new Date().getFullYear();
+    const shopAge = currentYear - startYear;
+    document.getElementById("shop-age").textContent = shopAge + " Years";
+</script>
 
 <section class="hero">
     <h2>Your Trusted Hardware & Plywood Store in Bhiwadi</h2>
@@ -86,3 +118,4 @@
 
 </body>
 </html>
+

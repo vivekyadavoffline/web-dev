@@ -148,7 +148,8 @@
     chatBtn.id = 'ahp-chat-btn';
 
     const icon = document.createElement('img');
-    icon.src = '/mnt/data/e86bd5c8-ace1-4fd3-a6b0-c8845c3dd67a.png';  // your image
+icon.src = 'ahpbot.png';
+  // your image
     chatBtn.appendChild(icon);
 
     document.body.appendChild(chatBtn);
@@ -295,5 +296,6 @@
     });
 
 })();
+
 
 

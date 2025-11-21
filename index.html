@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ambay Hardware & Plywood - Home</title>
-    <link rel="stylesheet" href="AHP.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ambay Hardware & Plywood</title>
+    <link rel="stylesheet" href="AHP.css" />
 </head>
-
 <body>
 
 <header>
@@ -15,16 +14,25 @@
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="brands.html">Brands</a>
-        <a href="gallery.html">Gallery</a>
         <a href="contact.html">Contact</a>
     </nav>
 </header>
 
-<!-- HERO SECTION -->
+<!-- SHOP LOGO -->
+<div style="text-align:center; margin-top:20px;">
+    <img src="https://lh3.googleusercontent.com/a-/ALV-UjWNGUKDCZS97s0VOiLXtuT0UHU1VmaW6q6U9FyDiZH0u4oRYULk=s265-w265-h265" 
+         alt="Ambay Hardware & Plywood Logo"
+         style="width:120px; height:120px; border-radius:50%; object-fit:cover;">
+</div>
+
+<!-- HERO -->
 <section class="hero">
-    <h2>Welcome to Ambay Hardware & Plywood</h2>
-    <p>Your trusted shop for plywood, laminates, hardware fittings and adhesives since 2009.</p>
+    <h2>Your Trusted Hardware & Plywood Store in Bhiwadi</h2>
+    <p>Premium plywood, laminates, hardware & branded accessories.</p>
+
     <a class="btn" href="brands.html">View Brands</a>
+    <br><br>
+    <a class="btn" href="https://wa.me/918058984540">WhatsApp Us</a>
 </section>
 
 <!-- SHOP DETAILS -->
@@ -32,7 +40,7 @@
     <h2>Shop Details</h2>
 
     <p><strong>Owner Name:</strong> Akhilesh Yadav</p>
-    <p><strong>Established On:</strong> 2 November 2009</p>
+    <p><strong>Shop Established On:</strong> 2 November 2009</p>
     <p><strong>Shop Age:</strong> <span id="shop-age"></span></p>
     <p><strong>Email:</strong> ambayhardwareandplywood@gmail.com</p>
     <p><strong>Phone:</strong> 8058984540</p>
@@ -41,26 +49,60 @@
 <!-- OWNER MESSAGE -->
 <section class="content">
     <h2>Owner’s Message</h2>
-
     <p>
-        “We don't just sell brands — we help brands become brands through our hard work,
-        dedication and commitment. Every customer is important, and every product we deliver
-        represents our trust.”
+        “We don't just sell brands — we help brands become brands through our
+        dedication and commitment. Every customer is important, and every
+        product we deliver represents our trust.”
     </p>
-
     <p style="margin-top:10px;">
-        <strong>- Akhilesh Yadav</strong><br>
-        Owner, Ambay Hardware & Plywood
+        <strong>- Akhilesh Yadav</strong><br>Owner, Ambay Hardware & Plywood
     </p>
+</section>
+
+<!-- FEATURE BOXES -->
+<section class="content" style="text-align:center;">
+    <h2>Why Choose Ambay?</h2>
+
+    <div style="
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+        gap:20px;
+        padding:20px;
+    ">
+        <div style="background:white;padding:20px;border-radius:10px;">
+            <h3>✔ Genuine Material</h3>
+            <p>Only trusted & original branded products.</p>
+        </div>
+
+        <div style="background:white;padding:20px;border-radius:10px;">
+            <h3>✔ Best Pricing</h3>
+            <p>Affordable rates with premium quality.</p>
+        </div>
+
+        <div style="background:white;padding:20px;border-radius:10px;">
+            <h3>✔ Trusted Brands</h3>
+            <p>Century, Action Tesa, Hettich, Fevicol & more.</p>
+        </div>
+    </div>
+</section>
+
+<!-- QUICK ENQUIRY -->
+<section class="content" style="text-align:center;">
+    <h2>Quick Enquiry</h2>
+
+    <a class="btn" href="https://wa.me/918058984540?text=I+want+to+enquire+about+Plywood">Plywood Enquiry</a>
+    <br><br>
+    <a class="btn" href="https://wa.me/918058984540?text=I+want+to+enquire+about+Laminates">Laminates Enquiry</a>
+    <br><br>
+    <a class="btn" href="https://wa.me/918058984540?text=I+want+to+enquire+about+Hardware+Fittings">Hardware Enquiry</a>
 </section>
 
 <!-- SUGGESTION BOX -->
 <section class="content">
     <h2>Suggestion Box</h2>
-
     <p>Your feedback helps us improve. Share any suggestion below:</p>
 
-    <textarea id="suggestion-input" 
+    <textarea id="suggestion-input"
               placeholder="Write your suggestion here..."
               style="width:100%;height:120px;padding:12px;border-radius:10px;border:1px solid #ccc;font-size:16px;"></textarea>
 
@@ -69,29 +111,33 @@
         Submit Suggestion
     </button>
 
+    <p id="suggestion-msg" style="margin-top:10px;color:green;font-weight:600;display:none;">
+        ✔ Thank you! Your suggestion has been noted.
+    </p>
+
     <p style="margin-top:15px;font-size:15px;color:#444;">
         You can also email suggestions at:<br>
         <strong>ambayhardwareandplywood@gmail.com</strong>
     </p>
-
-    <p id="suggestion-msg" style="margin-top:10px;color:green;font-weight:600;display:none;">
-        ✔ Thank you! Your suggestion has been noted.
-    </p>
 </section>
 
-<!-- WHATSAPP FLOAT BUTTON -->
-<a href="https://wa.me/918058984540?text=Hello%2C+I+want+to+make+an+enquiry."
-   style="position:fixed;bottom:20px;right:20px;background:#25d366;color:white;padding:14px 18px;border-radius:50px;
-          font-size:18px;text-decoration:none;box-shadow:0 4px 15px rgba(0,0,0,0.3);">
-   WhatsApp
-</a>
+<!-- FOOTER -->
+<footer style="
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+    margin-top:20px;
+">
+    <p>© 2025 Ambay Hardware & Plywood, Bhiwadi</p>
+    <p>📞 Call: <a href="tel:8058984540" style="color:#00d4ff;">8058984540</a></p>
+    <p>💬 WhatsApp: <a href="https://wa.me/918058984540" style="color:#00d4ff;">Click Here</a></p>
+</footer>
 
-<!-- CHATBOT CONTAINER -->
-<div id="chatbot-container"></div>
+<!-- Chatbot -->
+<script src="AHP.js"></script>
 
-<script src="js/AHP.js"></script>
-
-<!-- JS FOR SHOP AGE + SUGGESTION -->
+<!-- SHOP AGE + SUGGESTION JS -->
 <script>
     // Calculate shop age
     const startYear = 2009;
@@ -114,6 +160,8 @@
 
 </body>
 </html>
+
+
 
 
 

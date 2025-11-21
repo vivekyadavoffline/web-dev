@@ -318,4 +318,43 @@ footer {
     }
 
 }
+/* MOBILE POPUP (BOTTOM SHEET) */
+@media (max-width: 600px) {
 
+    .popup {
+        display: none !important; /* disable desktop popup on mobile */
+    }
+
+    .mobile-popup {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0,0,0,0.95);
+        padding: 20px;
+        text-align: center;
+        z-index: 9999;
+        color: white;
+        border-radius: 20px 20px 0 0;
+        animation: slideUp 0.3s ease;
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+    }
+
+    .brand-card:active .mobile-popup {
+        display: block !important;
+    }
+
+    .visit-btn {
+        background:#444;
+        color:white;
+        padding:8px 14px;
+        border-radius:8px;
+        text-decoration:none;
+        display:inline-block;
+    }
+}

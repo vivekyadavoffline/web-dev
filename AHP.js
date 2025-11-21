@@ -134,7 +134,6 @@
 .ahp-suggestion:hover {
     background: #dcecff;
 }
-
 /* Mobile */
 @media (max-width:420px) {
     #ahp-chat-panel { width: 94%; right: 3%; height: 72vh; }
@@ -144,11 +143,6 @@
     s.innerHTML = css;
     document.head.appendChild(s);
 })();
-
-
-
-
-
 /* -------------------------
    Chatbot Core
 -------------------------- */
@@ -190,28 +184,20 @@
             <div class="ahp-suggestion">Brands</div>
             <div class="ahp-suggestion">Owner</div>
         </div>
-
         <div id="ahp-chat-input-row">
             <input id="ahp-chat-input" placeholder="Type a question..." />
             <button id="ahp-chat-send">Send</button>
         </div>
     `;
-
     document.body.appendChild(panel);
-
-
     /* Toggle Panel */
     chatBtn.onclick = () => panel.style.display = 
         (panel.style.display === "flex") ? "none" : "flex";
-
     document.getElementById("ahp-close").onclick = () => 
         panel.style.display = "none";
-
-
     /* Core Helpers */
     const messages = document.getElementById("ahp-chat-messages");
     const input = document.getElementById("ahp-chat-input");
-
     function addUser(msg) {
         const box = document.createElement("div");
         box.className = "ahp-msg you";
@@ -219,7 +205,6 @@
         messages.appendChild(box);
         scrollChat();
     }
-
     function addBot(msg, html=false) {
         const box = document.createElement("div");
         box.className = "ahp-msg bot";
@@ -253,8 +238,6 @@
         { keys:['price','rate'], ans:'Prices vary. Please WhatsApp us!' },
         { keys:['help'], ans:'You can ask: timings, plywood, brands, address, owner info.' }
     ];
-
-
     /* -----------------------------
        Handle User Message
     ------------------------------ */
@@ -300,8 +283,8 @@
             processMessage(txt);
         }
     };
-
 })();
+
 
 
 
